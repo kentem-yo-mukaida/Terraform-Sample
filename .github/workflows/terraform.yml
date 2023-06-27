@@ -72,9 +72,17 @@ jobs:
       - name: Show files
         run: ls -R
 
+      # Show current directory
+      - name: Show current directory
+        run: echo "$PWD"
+
       # Move terraform directory
       - name: Move terraform directory
-        run: cd "./SampleWork/リソースグループを作るサンプル"
+        run: cd "/SampleWork/リソースグループを作るサンプル"
+
+      # Show current directory
+      - name: Show current directory
+        run: echo "$PWD"
 
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
