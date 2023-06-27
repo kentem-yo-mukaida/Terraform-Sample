@@ -68,13 +68,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Move terraform directory
-      - name: Move terraform directory
-        run: cd "リソースグループを作るサンプル"
-
       # Show files in directory
       - name: Show files
         run: ls -R
+
+      # Move terraform directory
+      - name: Move terraform directory
+        run: cd "リソースグループを作るサンプル"
 
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
