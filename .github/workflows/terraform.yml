@@ -78,7 +78,7 @@ jobs:
 
       # Move terraform directory
       - name: Move terraform directory
-        run: cd "/SampleWork/リソースグループを作るサンプル"
+        run: cd "./SampleWork/リソースグループを作るサンプル"
 
       # Show current directory
       - name: Show current directory
