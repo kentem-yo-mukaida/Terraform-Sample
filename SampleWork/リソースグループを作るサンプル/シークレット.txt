@@ -1,0 +1,4 @@
+ClientId : 07477e4f-0e4f-44ce-91e0-789c9bb3c11f
+Secret : oml8Q~cXzTDHXBBofKaYr6z.QSMOpge4GNL0Tdyf
+Subscription : fd311764-61f2-43c7-8578-386dbd9785f0
+TenantId : 4af6c951-81a2-4286-b6f3-4e1db39d5b1f
