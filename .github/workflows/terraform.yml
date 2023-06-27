@@ -68,6 +68,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # Move terraform directory
+      - name: Move terraform directory
+        run: cd "リソースグループを作るサンプル"
+
       # Show files in directory
       - name: Show files
         run: ls -R
