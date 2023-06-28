@@ -76,15 +76,15 @@ jobs:
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        run: terraform -chdir=SampleWork/リソースグループを作るサンプル init
+        run: terraform -chdir=SampleWork/AppServiceを作るサンプル init
 
       # Checks that all Terraform configuration files adhere to a canonical format
       #- name: Terraform Format
-      #  run: terraform -chdir=SampleWork/リソースグループを作るサンプル fmt -check
+      #  run: terraform -chdir=SampleWork/AppServiceを作るサンプル fmt -check
       #
       # Generates an execution plan for Terraform
       - name: Terraform Plan
-        run: terraform -chdir=SampleWork/リソースグループを作るサンプル plan -out main.tfplan -var "ARM_CLIENT_ID=07477e4f-0e4f-44ce-91e0-789c9bb3c11f" -var "ARM_SUBSCRIPTION_ID=fd311764-61f2-43c7-8578-386dbd9785f0" -var "ARM_TENANT_ID=4af6c951-81a2-4286-b6f3-4e1db39d5b1f" -var "ARM_CLIENT_SECRET=oml8Q~cXzTDHXBBofKaYr6z.QSMOpge4GNL0Tdyf"
+        run: terraform -chdir=SampleWork/AppServiceを作るサンプル plan -out main.tfplan -var "ARM_CLIENT_ID=07477e4f-0e4f-44ce-91e0-789c9bb3c11f" -var "ARM_SUBSCRIPTION_ID=fd311764-61f2-43c7-8578-386dbd9785f0" -var "ARM_TENANT_ID=4af6c951-81a2-4286-b6f3-4e1db39d5b1f" -var "ARM_CLIENT_SECRET=oml8Q~cXzTDHXBBofKaYr6z.QSMOpge4GNL0Tdyf"
 
       # Show files in directory
       - name: Show files
@@ -93,10 +93,10 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-tfstate
-          path: ${{ github.workspace }}/SampleWork/リソースグループを作るサンプル/main.tfstate
+          path: ${{ github.workspace }}/SampleWork/AppServiceを作るサンプル/main.tfstate
 
         # On push to "main", build or change infrastructure according to Terraform configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
       - name: Terraform Apply
         # if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-        run: terraform -chdir=SampleWork/リソースグループを作るサンプル apply -auto-approve -input=false
+        run: terraform -chdir=SampleWork/AppServiceを作るサンプル apply -auto-approve -input=false
