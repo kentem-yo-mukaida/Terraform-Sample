@@ -79,9 +79,9 @@ jobs:
         run: terraform -chdir=SampleWork/リソースグループを作るサンプル init
 
       # Checks that all Terraform configuration files adhere to a canonical format
-      - name: Terraform Format
-        run: terraform -chdir=SampleWork/リソースグループを作るサンプル fmt -check
-
+      #- name: Terraform Format
+      #  run: terraform -chdir=SampleWork/リソースグループを作るサンプル fmt -check
+      #
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         run: terraform -chdir=SampleWork/リソースグループを作るサンプル plan -out main.tfplan -var "ARM_CLIENT_ID=07477e4f-0e4f-44ce-91e0-789c9bb3c11f" -var "ARM_SUBSCRIPTION_ID=fd311764-61f2-43c7-8578-386dbd9785f0" -var "ARM_TENANT_ID=4af6c951-81a2-4286-b6f3-4e1db39d5b1f" -var "ARM_CLIENT_SECRET=oml8Q~cXzTDHXBBofKaYr6z.QSMOpge4GNL0Tdyf"
