@@ -55,52 +55,53 @@ permissions:
 jobs:
   terraform:
     name: 'Terraform'
+    # Linux 環境で実行
     runs-on: ubuntu-latest
     environment: production
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    # GitHub Actions ランナーが ubuntu-latest、macos-latest、Windows-latest のいずれであるかに関係なく、Bash シェルを使用します。
     defaults:
       run:
         shell: bash
 
     steps:
-      # Checkout the repository to the GitHub Actions runner
+      # ソースコードをチェックアウト
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Show files in directory
+      # ファイル一覧を表示
       - name: Show files
         run: ls -R
 
-      # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      # Terraform CLI の最新バージョンをインストールし、Terraform Cloud ユーザー API トークンを使用して Terraform CLI 構成ファイルを構成します。
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      # 初期ファイルの作成、リモート状態のロード、モジュールのダウンロードなどにより、新規または既存の Terraform 作業ディレクトリを初期化します。
       - name: Terraform Init
         run: terraform init
 
-      # Checks that all Terraform configuration files adhere to a canonical format
+      # すべての Terraform 構成ファイルが正規の形式に従っていることを確認します
       - name: Terraform Format
         run: terraform fmt
 
-      # Generates an execution plan for Terraform
+      # Terraform の実行計画を生成します。
       - name: Terraform Plan
         run: terraform plan -out main.tfplan -var "ARM_CLIENT_ID=07477e4f-0e4f-44ce-91e0-789c9bb3c11f" -var "ARM_SUBSCRIPTION_ID=fd311764-61f2-43c7-8578-386dbd9785f0" -var "ARM_TENANT_ID=4af6c951-81a2-4286-b6f3-4e1db39d5b1f" -var "ARM_CLIENT_SECRET=oml8Q~cXzTDHXBBofKaYr6z.QSMOpge4GNL0Tdyf"
 
-      # Show files in directory
+      # ファイル一覧を表示
       - name: Show files
         run: ls -R
 
+      # 実行計画ファイルを一時ストレージに保存
       - uses: actions/upload-artifact@v3
         with:
           name: my-tfstate
           path: main.tfplan
 
-      # On push to "main", build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+      # 実行計画ファイルに従ってリソースを作成
       - name: Terraform Apply
         # if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
         run: terraform apply main.tfplan
