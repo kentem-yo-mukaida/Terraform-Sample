@@ -85,7 +85,7 @@ jobs:
 
       # すべての Terraform 構成ファイルが正規の形式に従っていることを確認します
       - name: Terraform Format
-        run: terraform fmt
+        run: terraform fmt -check
 
       # Terraform の実行計画を生成します。
       - name: Terraform Plan
